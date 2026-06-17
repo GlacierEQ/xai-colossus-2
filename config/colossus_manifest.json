@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0-COLOSSUS",
+  "codename": "GLACIER-SOVEREIGN",
+  "checkpoint": "30db1e4f",
+  "operator": "Casey Barton",
+  "facility": {
+    "name": "xAI Colossus 2",
+    "location": "Memphis, TN / Southaven, MS",
+    "total_power_mw": 1500,
+    "gpu_count": 200000,
+    "gpu_model": "NVIDIA H200",
+    "rack_count": 12500,
+    "gpus_per_rack": 16,
+    "h100_tdp_watts": 700,
+    "zones": ["A", "B", "C"],
+    "chunks_per_zone": 16
+  },
+  "thermal": {
+    "target_pue": 1.03,
+    "critical_temp_c": 85,
+    "hot_temp_c": 78,
+    "warm_temp_c": 70,
+    "immersion_tanks": 100,
+    "gpus_per_tank": 2000,
+    "coolant": "Novec 7100",
+    "boiling_onset_c": 61.0,
+    "cascade_delta_t_max_c": 15.0,
+    "cascade_power_surge_mw": 50.0,
+    "max_consecutive_anomalies": 3,
+    "tick_interval_ms": 500,
+    "microwave_sweep_every_n_ticks": 5,
+    "connector_refresh_every_n_ticks": 10,
+    "fabric_diagnostic_every_n_ticks": 20
+  },
+  "energy": {
+    "grid_capacity_mva": 150,
+    "megapack_capacity_mwh": 560,
+    "megapack_max_discharge_mw": 140,
+    "megapack_max_charge_mw": 70,
+    "solar_peak_mw": 12,
+    "safety_margin": 0.08,
+    "cascade_threshold": 0.95,
+    "control_interval_ms": 100,
+    "forecast_horizon_s": 45,
+    "turbine_count": 32,
+    "turbine_capacity_mw": 37,
+    "utility_limit_mw": 300
+  },
+  "nanosphere": {
+    "base_fluid": "water",
+    "primary_nanoparticle": "Al2O3",
+    "volume_fraction": 0.03,
+    "particle_size_nm": 30,
+    "degradation_halflife_days": 180,
+    "stability_threshold": 60,
+    "max_volume_fraction": 0.05
+  },
+  "security": {
+    "zero_trust": true,
+    "threat_detection_threshold": 0.5,
+    "max_anomaly_rate_per_min": 10,
+    "incident_auto_response": true,
+    "sbom_verification": true,
+    "hydra_enabled": true,
+    "api_key": null
+  },
+  "fusion_modes": [
+    {
+      "name": "COLOSSUS_FULL",
+      "description": "All systems nominal — full compute",
+      "requires": ["SHADOW", "GHOST", "MICROWAVE", "CORE-THINK"]
+    },
+    {
+      "name": "EMERGENCY_RESPONSE",
+      "description": "Thermal emergency — maximum cooling",
+      "requires": ["SUPERNOVA", "MICROWAVE", "SHADOW"]
+    },
+    {
+      "name": "PREDICTIVE_COOLING",
+      "description": "Pre-cool based on ML forecast",
+      "requires": ["CORE-THINK", "MICROWAVE", "SHADOW"]
+    },
+    {
+      "name": "GHOST_OPTIMIZATION",
+      "description": "Zero-trace background optimization",
+      "requires": ["GHOST", "SHADOW"]
+    }
+  ]
+}
