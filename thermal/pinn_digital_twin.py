@@ -94,9 +94,12 @@ class PINNDigitalTwin:
 
         raw_correction = _perceptron_forward(x, w_ih, b_h, w_ho, b_o)
         correction = 1.0 + raw_correction * 0.1 + offset
+        correction = max(0.5, min(2.0, correction))
         neural_q = physics_q * correction
 
-        self._calibration_offsets[zone_id] = offset * 0.995
+        offset = offset * 0.995
+        offset = max(-0.5, min(0.5, offset))
+        self._calibration_offsets[zone_id] = offset
         return neural_q
 
     def _update_drift(self, zone_id: str, residual: float) -> None:
@@ -137,9 +140,19 @@ class PINNDigitalTwin:
 
         denom = max(abs(physics_q), 1e-6)
         residual = abs(neural_q - physics_q) / denom
+        residual = min(residual, 100.0)
 
         flagged = residual > self.residual_threshold
         confidence = self._compute_confidence(zone_id)
+
+        if flagged:
+            history = self._drift_history.get(zone_id, [])
+            if len(history) >= 10:
+                recent_avg = sum(history[-10:]) / 10
+                if recent_avg > 0.5:
+                    self._perceptron = _init_perceptron()
+                    self._calibration_offsets[zone_id] = 0.0
+                    logger.info("PINN_WEIGHT_RESET: zone=%s avg_residual=%.3f", zone_id, recent_avg)
 
         self._update_drift(zone_id, residual)
 
