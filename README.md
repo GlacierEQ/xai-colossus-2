@@ -1,176 +1,158 @@
-# xAI Colossus 2 — Sovereign Infrastructure
+# 🧠 xAI Colossus 2 — Sovereign Infrastructure Control System
 
-> The complete end-to-end control system for a 1.5GW, 200k-GPU AI supercomputer.
+[![CI](https://github.com/GlacierEQ/xai-colossus-2/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/xai-colossus-2/actions)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-55%2B-brightgreen.svg)](https://github.com/GlacierEQ/xai-colossus-2)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
+> End-to-end sovereign control system for a **1.5GW, 200,000-GPU AI supercomputer**.
+> 8 subsystems · 12 pistons · Mastermind orchestrator · Pro-Code 7-gate audit.
+
+---
+
+## Architecture
 
 ```
-                    ┌─────────────────────────────────────┐
-                    │      COLOSSUS ORCHESTRATOR           │
-                    │    tick-driven · 500ms cycles        │
-                    │    INGEST → COMPUTE → ACT → OBSERVE  │
-                    └──────────┬──────────────────────────┘
-                               │
-        ┌──────────┬───────────┼───────────┬──────────┐
-        ▼          ▼           ▼           ▼          ▼
-   ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
-   │THERMAL  │ │ ENERGY  │ │SECURITY │ │NANOSPHR │ │SERVERS  │
-   │PINN     │ │Grid     │ │Hydra    │ │Conductvy│ │Rack     │
-   │Immersion│ │Megapack │ │Ghost    │ │Degradatn│ │GPU Health│
-   │Cascade  │ │PUE Opt  │ │Incident │ │Stability│ │Network  │
-   │Predict  │ │Forecast │ │SBOM     │ │Optimizer│ │Fabric   │
-   └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘
-        │           │           │           │           │
-        └───────────┴───────────┼───────────┴───────────┘
-                                │
-                    ┌───────────┴───────────┐
-                    │   + WATERPLANT        │
-                    │   + MICROCODE         │
-                    │   + COMMUNITY         │
-                    └───────────┬───────────┘
-                                │
-                    ┌───────────┴───────────┐
-                    │   API GATEWAY         │
-                    │   MCP BRIDGE          │
-                    │   ASPEN GROVE MEMORY  │
-                    └───────────────────────┘
+┌─────────────────────────────────────────────────────┐
+│              MASTERMIND ORCHESTRATOR                  │
+│    12 pistons · task chaining · auto-heal · 500ms    │
+└──────────────────────┬──────────────────────────────┘
+                       │
+    ┌──────────┬───────┼───────┬──────────┬──────────┐
+    ▼          ▼       ▼       ▼          ▼          ▼
+ THERMAL    ENERGY  SECURITY  SERVERS  WATERPLANT  MICROCODE
+ PINN       Grid    Hydra     Rack     5-Stage     Firmware
+ Immersed   Megapack Ghost    GPU      Cooling     Matrix
+ Cascade    PUE     SBOM     Health   Tower       Compat
+ Predict    Forecast         Network  Comply      Patch
+    │          │       │       │          │          │
+    └──────────┴───────┼───────┴──────────┴──────────┘
+                       │
+              ┌────────┴────────┐
+              │  API GATEWAY    │
+              │  MCP BRIDGE     │
+              │  4-TIER MEMORY  │
+              └─────────────────┘
 ```
 
 ## Quick Start
 
 ```python
-from core.colossus_orchestrator import ColossusOrchestrator
+from core.mastermind_orchestrator import MastermindOrchestrator
 import asyncio
 
-orch = ColossusOrchestrator()
-status = orch.system_status()
-print(f"Health: {status['health']} | Subsystems: {sum(status['subsystems'].values())}")
+# Initialize orchestrator with all subsystems
+orch = MastermindOrchestrator()
 
-# Run 10 ticks
+# Run full autonomous loop
 asyncio.run(orch.run(duration_ticks=10))
+
+# Check health
+print(orch.summary())
 ```
 
-## Directory Structure
+## Subsystems (8)
 
-```
-xai-colossus-2/
-├── core/                    # Central orchestrator + shared primitives
-│   └── colossus_orchestrator.py
-├── thermal/                 # PINN digital twin + immersion + cascade + predictive
-├── energy/                  # Grid balancer + Megapack FSM + PUE + demand forecast
-├── security/                # Hydra immune + ghost-ember + incident + SBOM
-├── nanosphere/              # Conductivity + degradation + optimizer + stability
-├── servers/                 # Rack architecture + GPU health + network fabric
-├── waterplant/              # Water treatment + cooling tower + compliance
-├── microcode/               # Firmware matrix + driver compat + hot patcher
-├── community/               # Emissions + impact assessment + licensing
-├── api/                     # REST gateway + MCP bridge
-├── memory/                  # Aspen Grove persistence bridge
-├── connectors/              # MCP tool definitions
-├── physics/                 # Shared constants (Maxwell, Hamilton-Crosser)
-├── config/                  # colossus_manifest.json
-├── tests/                   # 24 integration tests
-└── README.md
-```
+| Subsystem | Purpose | Key Innovation |
+|-----------|---------|----------------|
+| **Thermal** | PINN digital twin, immersion cooling | Physics-Informed Neural Network |
+| **Energy** | 1.5GW grid balancing, Megapack FSM | 8-state finite state machine |
+| **Security** | Hydra immune response, SBOM chain | Multi-head threat detection |
+| **Servers** | 12,500 racks, 200k GPU health | Real-time thermal monitoring |
+| **Waterplant** | 5-stage treatment, cooling tower | Clean Water Act compliance |
+| **Microcode** | Firmware matrix, driver compat | Hot-patching without downtime |
+| **Nanosphere** | Conductivity, degradation | Arrhenius degradation models |
+| **Community** | Emissions, impact | Environmental justice tracking |
 
-## Subsystems
+## Mastermind Orchestrator
 
-| Subsystem | Files | Purpose |
-|-----------|-------|---------|
-| **Thermal** | 4 | PINN physics-informed validation, 100-tank immersion, cascade shield, predictive dispatch |
-| **Energy** | 4 | 1.5GW grid balancer, 8-state Megapack FSM, PUE optimizer, demand forecaster |
-| **Security** | 4 | Hydra immune response, ghost-ember perimeter, incident autoresponse, SBOM chain |
-| **Nanosphere** | 4 | Maxwell/H-C conductivity, 5-state degradation lifecycle, blend optimizer, stability scorer |
-| **Servers** | 4 | 12500-rack architecture, 200k GPU health, 100k InfiniBand links |
-| **Waterplant** | 4 | 5-stage water treatment, cooling tower, CWA-402 compliance |
-| **Microcode** | 4 | Firmware versioning, CUDA-driver compat, live hot-patching |
-| **Community** | 4 | Emissions tracking, impact assessment, licensing management |
-| **API** | 2 | 9 REST endpoints, 10 MCP tools, rate limiter, auth |
-| **Memory** | 2 | Aspen Grove 4-tier persistence (hot/warm/cold/frozen) |
+12 autonomous pistons running behind the scenes:
 
-## API Endpoints
+| Piston | Role | Lane |
+|--------|------|------|
+| STEALTH-MICROWAVE | Parallel Execution | batch_acceleration |
+| MOTION-FORGE | Legal Motion Generation | legal_warfare |
+| SPIRAL-MEMORY | Memory Management | memory_ops |
+| ASPEN-FEDERATION | Connector Orchestration | connectors |
+| RICO-MAPPER | RICO Analysis | legal_warfare |
+| FEDERAL-ESCALATION | Federal Court Filing | legal_warfare |
+| EVIDENCE-ANALYZER | Evidence Processing | forensics |
+| NOTION-SYNC | Notion Integration | integrations |
+| MORPHEUS-ADAPT | Adaptive Learning | intelligence |
+| CONSTITUTIONAL-WARFARE | Constitutional Law | legal_warfare |
+| QUANTUM-MEMORY | Advanced Memory | memory_ops |
+| HOLOGRAPHIC-MESH | Distributed Computing | infrastructure |
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/status` | GET | Full system status JSON |
-| `/health` | GET | Quick health check |
-| `/ready` | GET | Readiness probe (all subsystems online) |
-| `/live` | GET | Liveness probe (tick ≥ 1) |
-| `/tick` | POST | Trigger manual tick cycle |
-| `/thermal` | GET | Thermal subsystem status |
-| `/energy` | GET | Energy subsystem status |
-| `/security` | GET | Security subsystem status |
-| `/nanosphere` | GET | Nanosphere subsystem status |
-| `/servers` | GET | Server rack status |
-| `/waterplant` | GET | Water treatment status |
-| `/microcode` | GET | Firmware status |
-| `/community` | GET | Emissions/compliance status |
-| `/zones` | GET | Per-zone telemetry |
-| `/events` | GET | Recent telemetry events |
-| `/metrics` | GET | Prometheus-compatible metrics |
+## Double Helix Architecture
 
-## MCP Tools
+**Alpha (What)** + **Omega (How)** = Two separate repos, tied through contracts.
 
-| Tool | Description |
-|------|-------------|
-| `colossus_status` | Full system status |
-| `colossus_health` | Quick health check |
-| `colossus_tick` | Trigger manual tick |
-| `colossus_zones` | Per-zone telemetry |
-| `colossus_thermal` | Thermal subsystem |
-| `colossus_energy` | Energy subsystem |
-| `colossus_security` | Security subsystem |
-| `colossus_nanosphere` | Nanosphere subsystem |
-| `colossus_events` | Telemetry events |
-| `colossus_memory` | Memory bridge stats |
+- **Alpha**: Domain physics (thermal, energy, security)
+- **Omega**: Orchestration (mastermind, devops, monitoring)
 
-## Configuration
+See [`HELIX.md`](HELIX.md) for full architecture.
 
-All configuration lives in `config/colossus_manifest.json`:
+## Pro-Code 7-Gate Audit
 
-- **facility**: 200k H200 GPUs, 12500 racks, 3 zones (A/B/C), 1.5GW total
-- **thermal**: 85°C critical, 61°C Novec boiling, 500ms tick, cascade at 3 anomalies
-- **energy**: 150MVA grid, 560MWh Megapack, 32 turbines × 37MW, 8% safety margin
-- **nanosphere**: Al2O3 @ 3% φ, 180-day half-life, Maxwell model
-- **security**: Zero-trust, 0.5 threat threshold, auto-response enabled
+Every code output passes through 7 gates:
+
+1. ✅ Naming (snake_case, prefixes)
+2. ✅ Architecture (subsystem contract)
+3. ✅ Failure handling (circuit breaker)
+4. ✅ Maintainability (4-tier memory)
+5. ✅ Authenticity (physics-first)
+6. ✅ Observability (TelemetryBus)
+7. ✅ Documentation (AGENTS.md)
+
+See [`PRO_CODE_AUDIT.md`](PRO_CODE_AUDIT.md) for details.
 
 ## Testing
 
 ```bash
-# Run all 24 tests
-python3 tests/test_end_to_end.py
+# Run all tests
+python -m pytest tests/ -v
 
-# Tests cover:
-# - Orchestrator init + tick cycle
-# - Circuit breaker isolation/recovery
-# - Telemetry bus pub/sub
-# - API gateway all endpoints
-# - Memory bridge persistence
-# - All 4 original subsystems
-# - All 4 new subsystems
-# - Negative cases (zero SOC, max threat, degraded mode)
-# - Performance (100 ticks < 500ms avg)
-# - Concurrency (10 threads × 100 events)
-# - MCP bridge tool dispatch
+# Run mastermind tests only
+python -m pytest tests/test_mastermind.py -v
+
+# Run devops pipeline tests
+python -m pytest tests/test_devops.py -v
 ```
 
-## Pro-Code Compliance
+**55+ tests** across mastermind orchestrator, devops pipeline, and existing subsystem tests.
 
-Built to the GlacierEQ sovereign coding standard:
+## Tech Stack
 
-- **12 Engineering Laws**: Naming, failure modes, comments, authenticity, security, structure, errors, testability, observability, dependency hygiene, API design, explicit intent
-- **7-Gate Audit**: Naming, architecture, failure handling, maintainability, authenticity, observability, documentation
-- **Zero AI-scaffold residue**: No placeholders, no TODOs, no fake data
+- **Python 3.13** — Core language
+- **asyncio** — Concurrent subsystem ticks
+- **pytest** — Test framework
+- **GitHub Actions** — CI/CD pipeline
+- **MCP Bridge** — AI agent integration
 
-## Architecture Decisions
+## Scale
 
-| Decision | Date | Rationale |
-|----------|------|-----------|
-| Tick-driven at 500ms | 2026-06-16 | Balances responsiveness with CPU budget on 7.3GB device |
-| Circuit breaker per-zone | 2026-06-16 | Isolates failing zones without facility-wide shutdown |
-| PINN with correction factor | 2026-06-16 | Neural predicts correction to physics, not absolute value — bounded residual |
-| Arrhenius degradation | 2026-06-16 | Temperature-accelerated decay is physically accurate for nanoparticle oxidation |
-| Fusion modes via manifest | 2026-06-16 | Runtime mode switching without code changes |
-| Aspen Grove 4-tier memory | 2026-06-16 | Hot (RAM) → Warm (JSONL) → Cold (pgvector) → Frozen (archive) |
+| Metric | Value |
+|--------|-------|
+| Power draw | 1.5 GW |
+| GPUs | 200,000 |
+| Racks | 12,500 |
+| InfiniBand links | 100,000 |
+| Cooling tanks | 100 (immersion) |
+| Subsystems | 8 |
+| Pistons | 12 |
+| API endpoints | 16+ |
+| MCP tools | 10 |
+
+## Related Repos
+
+| Repo | Domain |
+|------|--------|
+| [xai-colossus-cooling](https://github.com/GlacierEQ/xai-colossus-cooling) | Thermal management |
+| [xai-colossus-energy](https://github.com/GlacierEQ/xai-colossus-energy) | Power grid |
+| [xai-colossus-security](https://github.com/GlacierEQ/xai-colossus-security) | Security systems |
+| [Pro-xAI](https://github.com/GlacierEQ/Pro-xAI) | xAI sovereign flagship |
+| [Pro_Code](https://github.com/GlacierEQ/Pro_Code) | Double Helix doctrine |
 
 ---
 
-*GlacierEQ Sovereign Stack | Operator: Casey Barton | Honolulu, HI | June 2026*
+> *"Two strands. One sovereign DNA. Build for 200k GPUs or don't build at all."*
