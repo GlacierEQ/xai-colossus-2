@@ -204,36 +204,15 @@ class MastermindOrchestrator:
     async def _tick_cooling(self, status: SubsystemStatus) -> Dict:
         """Real tick on cooling subsystem."""
         try:
-            # Import directly from cooling repo (avoid local shadow)
             repo_path = status._repo_path
-            src_path = repo_path / "src"
-            import importlib.util
             
-            # Register src/ path so connectors.mcp_router shim works
-            if str(src_path) not in sys.path:
-                sys.path.insert(0, str(src_path))
-            
-            # Load the REAL memory module from src/ (not the shim)
-            memory_spec = importlib.util.spec_from_file_location(
-                "memory.aspen_grove_logger",
-                str(src_path / "memory" / "aspen_grove_logger.py")
+            # Add cooling repo to sys.path (shims now work from any directory)
+            if str(repo_path) not in sys.path:
+                sys.path.insert(0, str(repo_path))
+
+            from apex_core.thermal_orchestrator import (
+                APEXThermalOrchestrator, CoolingMode, CoolingZone, ThermalNode
             )
-            memory_mod = importlib.util.module_from_spec(memory_spec)
-            sys.modules["memory.aspen_grove_logger"] = memory_mod
-            memory_spec.loader.exec_module(memory_mod)
-            
-            # Now import thermal_orchestrator
-            spec = importlib.util.spec_from_file_location(
-                "cooling_thermal",
-                str(repo_path / "apex_core" / "thermal_orchestrator.py")
-            )
-            mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            
-            APEXThermalOrchestrator = mod.APEXThermalOrchestrator
-            CoolingMode = mod.CoolingMode
-            CoolingZone = mod.CoolingZone
-            ThermalNode = mod.ThermalNode
             
             # Create orchestrator if not cached
             if not hasattr(self, '_cooling_orch') or self._cooling_orch is None:
