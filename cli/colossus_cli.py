@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Colossus 2 CLI — Command-line interface to the sovereign infrastructure.
+Colossus 2 CLI — Command-line interface to the autonomous infrastructure.
 
 Usage:
     python3 -m cli.colossus_cli status
@@ -131,7 +131,7 @@ def cmd_run(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Colossus 2 CLI — Sovereign Infrastructure Control",
+        description="Colossus 2 CLI — Infrastructure Control",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="command", help="Command to run")

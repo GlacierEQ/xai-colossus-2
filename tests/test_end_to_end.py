@@ -2,7 +2,7 @@
 """
 Colossus 2 End-to-End Test Suite
 ==================================
-Verifies the complete sovereign infrastructure:
+Verifies the complete autonomous infrastructure:
   - Orchestrator initializes all subsystems
   - Tick cycle runs without errors
   - Thermal, Energy, Security, Nanosphere produce valid output

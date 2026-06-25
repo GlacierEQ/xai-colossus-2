@@ -1,4 +1,4 @@
-"""Colossus 2 API Gateway — Unified interface to sovereign infrastructure."""
+"""Colossus 2 API Gateway — Unified interface to autonomous infrastructure."""
 
 __all__ = ["ColossusAPI"]
 

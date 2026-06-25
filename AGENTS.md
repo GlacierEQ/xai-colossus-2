@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Sovereign infrastructure control system for xAI Colossus 2 — a 1.5GW, 200k-GPU AI supercomputer. Python, pure dataclasses, no frameworks. Tick-driven orchestrator with 8 pluggable subsystems.
+Autonomous infrastructure control system for xAI Colossus 2 — a 1.5GW, 200k-GPU AI supercomputer. Python, pure dataclasses, no frameworks. Tick-driven orchestrator with 8 pluggable subsystems.
 
 ## Essential Commands
 
@@ -95,7 +95,7 @@ All config lives in `config/colossus_manifest.json`. The orchestrator validates 
 ## Naming Conventions
 
 - Subsystem dirs: lowercase (`thermal/`, `energy/`, `security/`)
-- Classes: PascalCase (`ColossusOrchestrator`, `SovereignGridBalancer`, `HydraImmuneSystem`)
+- Classes: PascalCase (`ColossusOrchestrator`, `AutonomousGridBalancer`, `HydraImmuneSystem`)
 - Logger prefix: `COLOSSUS-SUBSYSTEM` (e.g., `COLOSSUS-THERMAL`, `COLOSSUS-ENERGY`)
 - Config keys: snake_case (`critical_temp_c`, `grid_capacity_mva`)
 - Files: snake_case (`pinn_digital_twin.py`, `grid_balancer.py`)

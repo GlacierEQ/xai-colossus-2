@@ -2,7 +2,7 @@
 """
 Colossus 2 API Gateway
 =======================
-Unified REST-like interface to the entire Colossus 2 sovereign infrastructure.
+Unified REST-like interface to the entire Colossus 2 autonomous infrastructure.
 
 Exposes:
   - /status        — Full system status JSON

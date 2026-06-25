@@ -1,11 +1,11 @@
 # 🔱 Double Helix: xAI Colossus 2
 
-> Alpha (What) + Omega (How) = Sovereign control system for 1.5GW, 200k-GPU AI supercomputer.
+> Alpha (What) + Omega (How) = Autonomous control system for 1.5GW, 200k-GPU AI supercomputer.
 
 ```
 BINDING: DOUBLE_HELIX:COLOSSUS_2 v1.0
 PAIR:    Alpha (8 subsystems) ←→ Omega (Mastermind + DevOps)
-MANTRA:  Two strands. One sovereign DNA.
+MANTRA:  Two strands. One autonomous DNA.
 ```
 
 ## 🧬 Alpha Strand (What — Domain Logic)

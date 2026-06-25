@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sovereign 1.5GW Grid Balancer for Colossus 2
+Autonomous 1.5GW Grid Balancer for Colossus 2
 ============================================
 Reconciles baseload generation, Tesla Megapack buffer, and GPU DVFS throttling.
 Cascade prevention at 95% capacity threshold.
@@ -72,8 +72,8 @@ class EnergyState:
     cascade_prevented: bool = False
 
 
-class SovereignGridBalancer:
-    """Sovereign 1.5GW grid balancer — baseload → megapack → DVFS cascade."""
+class AutonomousGridBalancer:
+    """Autonomous 1.5GW grid balancer — baseload → megapack → DVFS cascade."""
 
     def __init__(self, energy_config: Optional[Dict[str, Any]] = None):
         cfg = energy_config or {}
@@ -104,7 +104,7 @@ class SovereignGridBalancer:
         self.state = EnergyState()
         self._tick_count: int = 0
         self._total_capacity_mw = self.config.grid_capacity_mva + self.baseload.total_capacity_mw
-        logger.info("SovereignGridBalancer INITIALIZED | capacity=%.0fMW turbines=%d megapack=%.0fMWh",
+        logger.info("AutonomousGridBalancer INITIALIZED | capacity=%.0fMW turbines=%d megapack=%.0fMWh",
                      self._total_capacity_mw, self.baseload.unit_count,
                      self.config.megapack_capacity_mwh)
 
@@ -218,7 +218,7 @@ async def main():
         "turbine_capacity_mw": 37,
         "utility_limit_mw": 300,
     }
-    balancer = SovereignGridBalancer(config)
+    balancer = AutonomousGridBalancer(config)
     print("INIT:", balancer.summary())
     for i in range(10):
         result = balancer.tick(i)

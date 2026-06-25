@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Colossus Mastermind Orchestrator — LIVE
-GlacierEQ Sovereign Stack
+GlacierEQ APEX Stack
 
 FULL AUTONOMOUS LOOP:
 - Monitors real subsystem health across all Colossus repos

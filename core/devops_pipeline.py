@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Colossus DevOps Pipeline — LIVE
-GlacierEQ Sovereign Stack
+GlacierEQ APEX Stack
 
 FULL AUTONOMOUS PIPELINE:
 - Actually runs pytest on each repo

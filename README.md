@@ -1,11 +1,11 @@
-# 🧠 xAI Colossus 2 — Sovereign Infrastructure Control System
+# 🧠 xAI Colossus 2 — Infrastructure Control System
 
 [![CI](https://github.com/GlacierEQ/xai-colossus-2/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/xai-colossus-2/actions)
 [![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-55%2B-brightgreen.svg)](https://github.com/GlacierEQ/xai-colossus-2)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
-> End-to-end sovereign control system for a **1.5GW, 200,000-GPU AI supercomputer**.
+> End-to-end autonomous control system for a **1.5GW, 200,000-GPU AI supercomputer**.
 > 8 subsystems · 12 pistons · Mastermind orchestrator · Pro-Code 7-gate audit.
 
 ---
@@ -150,9 +150,9 @@ python -m pytest tests/test_devops.py -v
 | [xai-colossus-cooling](https://github.com/GlacierEQ/xai-colossus-cooling) | Thermal management |
 | [xai-colossus-energy](https://github.com/GlacierEQ/xai-colossus-energy) | Power grid |
 | [xai-colossus-security](https://github.com/GlacierEQ/xai-colossus-security) | Security systems |
-| [Pro-xAI](https://github.com/GlacierEQ/Pro-xAI) | xAI sovereign flagship |
+| [Pro-xAI](https://github.com/GlacierEQ/Pro-xAI) | xAI autonomous flagship |
 | [Pro_Code](https://github.com/GlacierEQ/Pro_Code) | Double Helix doctrine |
 
 ---
 
-> *"Two strands. One sovereign DNA. Build for 200k GPUs or don't build at all."*
+> *"Two strands. One autonomous DNA. Build for 200k GPUs or don't build at all."*

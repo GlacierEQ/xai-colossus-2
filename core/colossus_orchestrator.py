@@ -2,9 +2,9 @@
 """
 Colossus 2 Central Orchestrator
 ================================
-The sovereign brain of xAI Colossus 2 — a 1.5GW, 200k-GPU AI supercomputer.
+The autonomous brain of xAI Colossus 2 — a 1.5GW, 200k-GPU AI supercomputer.
 
-Wires together: Thermal Intelligence, Energy Sovereignty, Zero-Trust Security,
+Wires together: Thermal Intelligence, Energy Autonomousty, Zero-Trust Security,
 Nanosphere Physics, and the Aspen Grove memory spine.
 
 Architecture:
@@ -172,7 +172,7 @@ class CircuitBreaker:
 
 class ColossusOrchestrator:
     """
-    The sovereign orchestrator for Colossus 2.
+    The autonomous orchestrator for Colossus 2.
 
     Tick lifecycle:
       1. INGEST   — pull telemetry from all subsystems
@@ -312,9 +312,9 @@ class ColossusOrchestrator:
             logger.warning("Immersion engine unavailable: %s", e)
 
         try:
-            from energy.grid_balancer import SovereignGridBalancer
-            self._energy = SovereignGridBalancer(self.manifest["energy"])
-            logger.info("Sovereign Grid Balancer: ONLINE")
+            from energy.grid_balancer import AutonomousGridBalancer
+            self._energy = AutonomousGridBalancer(self.manifest["energy"])
+            logger.info("Autonomous Grid Balancer: ONLINE")
         except Exception as e:
             logger.warning("Grid balancer unavailable: %s", e)
 
