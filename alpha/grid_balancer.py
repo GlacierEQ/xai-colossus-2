@@ -1,3 +1,4 @@
+# Alpha (What) — Pure Physics | Omega (How) — Controllers | The Answer is 42.
 #!/usr/bin/env python3
 """
 Autonomous 1.5GW Grid Balancer for Colossus 2
