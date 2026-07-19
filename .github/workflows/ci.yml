@@ -1,64 +1,14 @@
-name: Colossus 2 CI
+name: CI
+
 on:
   push:
-    branches: [master, main]
+    branches: [main, develop]
   pull_request:
-    branches: [master, main]
+    branches: [main]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11", "3.12", "3.13"]
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      
-      - name: Install dependencies
-        run: |
-          pip install pytest pytest-asyncio
-      
-      - name: Run Mastermind tests
-        run: |
-          python -m pytest tests/test_mastermind.py -v --tb=short
-      
-      - name: Run DevOps Pipeline tests
-        run: |
-          python -m pytest tests/test_devops.py -v --tb=short
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      
-      - name: Check naming conventions
-        run: |
-          # Verify snake_case in Python files
-          find . -name "*.py" -not -path "./.git/*" | while read f; do
-            basename=$(basename "$f" .py)
-            if echo "$basename" | grep -q "-"; then
-              echo "FAIL: $f uses hyphens instead of underscores"
-              exit 1
-            fi
-          done
-          echo "PASS: All Python files use snake_case"
-      
-      - name: Verify required files
-        run: |
-          for f in AGENTS.md HELIX.md PRO_CODE_AUDIT.md README.md; do
-            if [ ! -f "$f" ]; then
-              echo "FAIL: Missing $f"
-              exit 1
-            fi
-          done
-          echo "PASS: All required files present"
+  ci:
+    uses: GlacierEQ/public-actions-runner-host/.github/workflows/reusable-quick-ci.yml@main
+    with:
+      repo_name: ${{ github.event.repository.name }}
+      language: python
