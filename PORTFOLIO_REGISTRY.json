@@ -1,0 +1,125 @@
+{
+  "schema": "glaciereq.public-portfolio-receipt-router.v1",
+  "evidence_state": "LOCAL_METADATA_ROUTER_NOT_RUNTIME_ORCHESTRATOR",
+  "non_affiliation": true,
+  "verified_sources": {
+    "cooling": {
+      "repository": "GlacierEQ/xai-colossus-cooling",
+      "source_pull_request": 37,
+      "evidence_state": "BOUNDED_CORE_TEST_VERIFIED",
+      "bounded_tests_passed": 37,
+      "artifact_id": 8886632264,
+      "merged": false,
+      "public_claim": "Bounded thermal simulation, anomaly/controller behavior, CLI status, and blueprint-format generation."
+    },
+    "energy": {
+      "repository": "GlacierEQ/xai-colossus-energy",
+      "source_pull_request": 10,
+      "evidence_state": "BOUNDED_ENERGY_FAMILY_TEST_VERIFIED",
+      "bounded_tests_passed": 16,
+      "additional_memory_unit_tests_passed": 19,
+      "artifact_id": 8887063327,
+      "merged": false,
+      "public_claim": "Bounded native Rust model and exact-commit analytical/response family composition."
+    },
+    "servers": {
+      "repository": "GlacierEQ/xai-colossus-servers",
+      "source_pull_request": 11,
+      "evidence_state": "BOUNDED_RACK_PLANNER_TEST_VERIFIED",
+      "bounded_tests_passed": 20,
+      "artifact_id": 8887480269,
+      "merged": false,
+      "public_claim": "Bounded deterministic rack-capacity scenario planning with immutable inputs and headroom accounting."
+    },
+    "security": {
+      "repository": "GlacierEQ/xai-colossus-security",
+      "source_pull_request": 5,
+      "evidence_state": "BOUNDED_SECURITY_PROPOSAL_ENGINE_TEST_VERIFIED",
+      "bounded_tests_passed": 35,
+      "artifact_id": 8887833822,
+      "merged": false,
+      "public_claim": "Bounded threat detection and response proposals with explicit external authority and receipt-bound resolution."
+    },
+    "nanosphere": {
+      "repository": "GlacierEQ/xai-colossus-nanosphere",
+      "source_pull_request": 4,
+      "evidence_state": "BOUNDED_NANOFLUID_MODEL_TEST_VERIFIED",
+      "bounded_tests_passed": 58,
+      "artifact_id": 8888366530,
+      "merged": false,
+      "public_claim": "Bounded nanofluid comparative modeling with validated inputs and modeled-versus-measured separation."
+    }
+  },
+  "execution_blocked_candidates": {
+    "microcode": {
+      "repository": "GlacierEQ/xai-colossus-microcode",
+      "source_pull_request": 1,
+      "classification": "REVIEWED_EXECUTION_BLOCKED",
+      "static_review": "REVIEWED_NO_CRITICAL_DEFECTS",
+      "generated_test_contract_count": 132,
+      "runner_steps_created": false,
+      "counted_as_verified": false,
+      "strategic_priority": 1
+    },
+    "waterplant": {
+      "repository": "GlacierEQ/xai-colossus-waterplant",
+      "source_pull_request": 1,
+      "classification": "GENERATED_EXECUTION_BLOCKED",
+      "generated_test_contract_count": 52,
+      "runner_steps_created": false,
+      "counted_as_verified": false,
+      "strategic_priority": 3
+    },
+    "architecture_planner": {
+      "repository": "GlacierEQ/colossus-build-blueprint",
+      "source_pull_request": 1,
+      "classification": "GENERATED_EXECUTION_BLOCKED",
+      "generated_test_contract_count": 59,
+      "runner_steps_created": false,
+      "counted_as_verified": false,
+      "strategic_priority": 2,
+      "canonical_role": "PORTFOLIO_DEPENDENCY_AND_MILESTONE_AUTHORITY"
+    }
+  },
+  "aggregate_executed_evidence": {
+    "verified_source_count": 5,
+    "bounded_source_tests_passed": 166,
+    "additional_energy_memory_unit_tests_passed": 19,
+    "direct_receipt_artifacts": 5,
+    "source_pull_requests_merged": 0
+  },
+  "canonical_authorities": {
+    "technical_sources": "individual verified source repositories",
+    "portfolio_dependency_model": "GlacierEQ/colossus-build-blueprint",
+    "human_evidence_navigator": "GlacierEQ/xai-colossus-community",
+    "public_receipt_router": "GlacierEQ/xai-colossus-2"
+  },
+  "historical_runtime_surfaces": {
+    "classification": "HISTORICAL_NON_AUTHORITATIVE",
+    "excluded_claims": [
+      "autonomous infrastructure control",
+      "live subsystem orchestration",
+      "Mastermind or piston execution",
+      "legal motion or litigation automation",
+      "MCP bridge connectivity",
+      "live API gateway",
+      "automatic healing or rollback",
+      "company deployment or internal access"
+    ]
+  },
+  "global_exclusions": [
+    "xAI or other company affiliation, endorsement, employment, or deployment",
+    "live datacenter, GPU, utility, firmware, security, water, or cooling access",
+    "autonomous control of physical or production systems",
+    "hyperscale fleet size, power, rack, link, tank, endpoint, or tool counts",
+    "measured PUE, uptime, performance, latency, cost, environmental, or community outcomes",
+    "vendor validation, permits, regulatory approval, legal conclusions, or physical-system safety"
+  ],
+  "repository_actions": {
+    "deleted": 0,
+    "archived": 0,
+    "renamed": 0,
+    "collapsed": 0,
+    "merged_by_this_pass": 0
+  }
+}
