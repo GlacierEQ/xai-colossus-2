@@ -1,85 +1,155 @@
-#!/usr/bin/env python3
-"""Tests for Colossus Mastermind Orchestrator — LIVE"""
+"""Tests for the fail-closed Mastermind compatibility facade."""
+
+from __future__ import annotations
+
 import asyncio
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pathlib import Path
 
 import pytest
+
 from core.mastermind_orchestrator import (
-    MastermindOrchestrator, Task, TaskPriority, TaskState, SubsystemHealth
+    MastermindOrchestrator,
+    SubsystemHealth,
+    Task,
+    TaskPriority,
+    TaskState,
 )
 
-
-@pytest.fixture
-def orchestrator():
-    return MastermindOrchestrator()
+ROOT = Path(__file__).resolve().parents[1]
+REGISTRY = ROOT / "PORTFOLIO_REGISTRY.json"
 
 
-class TestMastermindOrchestrator:
-    def test_initial_pistons_registered(self, orchestrator):
-        assert len(orchestrator.pistons) == 12
+def orchestrator() -> MastermindOrchestrator:
+    return MastermindOrchestrator(REGISTRY)
 
-    def test_subsystems_loaded(self, orchestrator):
-        assert "cooling" in orchestrator.subsystems
-        assert "energy" in orchestrator.subsystems
-        assert "security" in orchestrator.subsystems
 
-    def test_piston_health(self, orchestrator):
-        piston = orchestrator.pistons["stealth_microwave"]
-        assert piston.health == 1.0
+def test_facade_loads_local_registry() -> None:
+    value = orchestrator()
+    assert value.registry_path == REGISTRY
+    assert value.evidence_state == "LOCAL_METADATA_ROUTER_NOT_RUNTIME_ORCHESTRATOR"
 
-    @pytest.mark.asyncio
-    async def test_tick_cooling(self, orchestrator):
-        result = await orchestrator.tick_subsystem("cooling")
-        # Cooling has complex import shims - verify the subsystem was attempted
-        assert "cooling" in orchestrator.subsystems
-        # May succeed or fail depending on import chain - both are acceptable
-        assert result is not None
 
-    @pytest.mark.asyncio
-    async def test_tick_energy(self, orchestrator):
-        result = await orchestrator.tick_subsystem("energy")
-        assert "state" in result or "error" in result
-        assert orchestrator.subsystems["energy"].tick_count > 0
+def test_facade_registers_no_pistons() -> None:
+    assert orchestrator().pistons == {}
 
-    @pytest.mark.asyncio
-    async def test_tick_security(self, orchestrator):
-        result = await orchestrator.tick_subsystem("security")
-        assert "threat_level" in result or "error" in result
-        assert orchestrator.subsystems["security"].tick_count > 0
 
-    @pytest.mark.asyncio
-    async def test_full_monitor_cycle(self, orchestrator):
-        health = await orchestrator.monitor_health()
-        assert "cooling" in health
-        assert "energy" in health
-        assert "security" in health
-        assert all(h["health"] in ("healthy", "degraded", "critical", "offline") for h in health.values())
+def test_facade_exposes_evidence_domains_not_live_subsystems() -> None:
+    value = orchestrator()
+    assert set(value.subsystems) == set(value.router.domains())
+    assert all(item["telemetry_available"] is False for item in value.subsystems.values())
 
-    @pytest.mark.asyncio
-    async def test_orchestrator_tick(self, orchestrator):
-        result = await orchestrator.tick()
-        assert "tick" in result
-        assert "health" in result
-        assert result["tick"] == 1
 
-    @pytest.mark.asyncio
-    async def test_submit_and_run_task(self, orchestrator):
-        task = Task(
-            task_id="T1",
-            description="Test cooling tick",
-            priority=TaskPriority.P1_HIGH,
-        )
-        await orchestrator.submit_task(task)
-        piston_id = orchestrator.assign_task(task)
-        assert piston_id is not None
-        result = await orchestrator.run_task(task)
-        assert task.state == TaskState.COMPLETED
+def test_facade_marks_health_unknown() -> None:
+    value = orchestrator()
+    assert all(
+        item["health"] == SubsystemHealth.UNKNOWN_NOT_TELEMETRY.value
+        for item in value.subsystems.values()
+    )
 
-    def test_summary_structure(self, orchestrator):
-        s = orchestrator.summary()
-        assert "tick_count" in s
-        assert "subsystems" in s
-        assert "pistons" in s
-        assert len(s["pistons"]) == 12
+
+def test_summary_disables_runtime_orchestration() -> None:
+    summary = orchestrator().summary()
+    assert summary["runtime_orchestration_available"] is False
+    assert summary["verified_source_count"] == 5
+    assert summary["external_queries_executed"] == 0
+    assert summary["external_actions_executed"] == 0
+
+
+def test_monitor_health_returns_evidence_metadata() -> None:
+    report = asyncio.run(orchestrator().monitor_health())
+    assert report["security"]["classification"] == "VERIFIED_SOURCE_PROMOTION"
+    assert report["microcode"]["classification"] == "REVIEWED_EXECUTION_BLOCKED"
+    assert all(item["health"] == "unknown_not_telemetry" for item in report.values())
+
+
+def test_tick_is_local_metadata_snapshot() -> None:
+    value = orchestrator()
+    result = asyncio.run(value.tick())
+    assert result["tick"] == 1
+    assert result["evidence_state"] == value.evidence_state
+    assert result["external_queries_executed"] == 0
+    assert result["external_actions_executed"] == 0
+
+
+def test_run_zero_ticks_is_empty() -> None:
+    value = orchestrator()
+    assert asyncio.run(value.run(0)) == []
+    assert value.running is False
+
+
+def test_run_two_ticks_is_deterministic_counter() -> None:
+    value = orchestrator()
+    snapshots = asyncio.run(value.run(2))
+    assert [item["tick"] for item in snapshots] == [1, 2]
+    assert all(item["external_actions_executed"] == 0 for item in snapshots)
+    assert value.running is False
+
+
+def test_run_rejects_boolean_duration() -> None:
+    with pytest.raises(TypeError):
+        asyncio.run(orchestrator().run(True))
+
+
+def test_run_rejects_negative_duration() -> None:
+    with pytest.raises(ValueError):
+        asyncio.run(orchestrator().run(-1))
+
+
+def test_tick_subsystem_rejects_execution() -> None:
+    result = asyncio.run(orchestrator().tick_subsystem("security"))
+    assert result["classification"] == "VERIFIED_SOURCE_PROMOTION"
+    assert result["execution_rejected"] is True
+    assert result["external_queries_executed"] == 0
+    assert result["external_actions_executed"] == 0
+
+
+def test_tick_subsystem_rejects_unknown_domain() -> None:
+    with pytest.raises(KeyError):
+        asyncio.run(orchestrator().tick_subsystem("unknown"))
+
+
+def test_submit_task_records_non_execution_receipt() -> None:
+    value = orchestrator()
+    task = Task("t1", "attempt old runtime operation", TaskPriority.P1_HIGH)
+    result = asyncio.run(value.submit_task(task))
+    assert result == "t1"
+    assert task.state is TaskState.REJECTED_NOT_RUNTIME
+    assert task.result == {
+        "executed": False,
+        "requires_external_system": True,
+        "external_actions_executed": 0,
+    }
+    assert value.tasks == [task]
+
+
+def test_assign_task_has_no_runtime_assignee() -> None:
+    task = Task("t1", "attempt assignment", TaskPriority.P2_MEDIUM)
+    assert orchestrator().assign_task(task) is None
+    assert task.state is TaskState.PENDING
+
+
+def test_run_task_rejects_pending_task() -> None:
+    value = orchestrator()
+    task = Task("t1", "attempt execution", TaskPriority.P0_CRITICAL)
+    result = asyncio.run(value.run_task(task))
+    assert result["executed"] is False
+    assert result["external_actions_executed"] == 0
+    assert task.state is TaskState.REJECTED_NOT_RUNTIME
+
+
+def test_task_requires_nonempty_identity() -> None:
+    with pytest.raises(ValueError):
+        Task(" ", "description", TaskPriority.P3_LOW)
+
+
+def test_task_requires_typed_priority() -> None:
+    with pytest.raises(TypeError):
+        Task("t1", "description", "P1_HIGH")
+
+
+def test_stop_is_idempotent() -> None:
+    value = orchestrator()
+    value.running = True
+    value.stop()
+    value.stop()
+    assert value.running is False
