@@ -126,7 +126,7 @@ Earlier files in this repository described:
 - legal-motion and litigation automation;
 - automatic healing and restart;
 - MCP and API connectivity;
-- 1.5 GW, 200,000 GPUs, 12,500 racks, and other hyperscale figures;
+- specific hyperscale power, GPU, rack, network, cooling, endpoint, and tool figures;
 - firmware hotpatching and physical infrastructure control.
 
 Those descriptions are classified as **HISTORICAL_NON_AUTHORITATIVE**. They are not part of the current public contract. See [`HISTORICAL_SURFACES.md`](HISTORICAL_SURFACES.md).
