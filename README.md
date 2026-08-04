@@ -1,172 +1,176 @@
-# 🧠 xAI Colossus 2 — Infrastructure Control System
+# GlacierEQ xAI / Colossus Portfolio Receipt Router
 
-[![CI](https://github.com/GlacierEQ/xai-colossus-2/actions/workflows/ci.yml/badge.svg)](https://github.com/GlacierEQ/xai-colossus-2/actions)
-[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-55%2B-brightgreen.svg)](https://github.com/GlacierEQ/xai-colossus-2)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+> Public, local-only evidence index for independently developed infrastructure, governance, simulation, and systems-planning projects.
 
-> End-to-end autonomous control system for a **1.5GW, 200,000-GPU AI supercomputer**.
-> 8 subsystems · 12 pistons · Mastermind orchestrator · Pro-Code 7-gate audit.
+## Evidence state
 
----
+**LOCAL_METADATA_ROUTER_NOT_RUNTIME_ORCHESTRATOR**
 
-## Architecture
+This repository is not an xAI system, not affiliated with or endorsed by xAI, and not deployed against any company, datacenter, GPU fleet, utility, firmware estate, water system, or physical facility.
 
+It validates and routes **local portfolio evidence metadata**. It does not import or operate the source subsystems.
+
+## What the public hub does
+
+- validates the local `PORTFOLIO_REGISTRY.json` fail closed;
+- reconciles verified source counts, test totals, artifact identifiers, and merge state;
+- separates executed source promotions from execution-blocked candidates;
+- returns bounded public claims only for exact verified source records;
+- identifies canonical technical, architecture, evidence-navigation, and public-routing authorities;
+- preserves historical code as non-authoritative rather than using it as proof;
+- records zero external queries and zero external actions.
+
+## What it does not do
+
+- autonomous infrastructure control;
+- subsystem health monitoring or auto-restart;
+- GPU, server, cooling, energy, security, water, or firmware telemetry;
+- task, piston, legal, litigation, connector, MCP, or API orchestration;
+- firmware flashing, hotpatching, rollback, isolation, or remediation;
+- physical-system actuation;
+- production deployment or company integration.
+
+## Current executed evidence
+
+| Domain | Source PR | Evidence state | Bounded tests | Artifact | Merged |
+|---|---:|---|---:|---:|---|
+| Cooling | `xai-colossus-cooling#37` | `BOUNDED_CORE_TEST_VERIFIED` | 37 | `8886632264` | No |
+| Energy | `xai-colossus-energy#10` | `BOUNDED_ENERGY_FAMILY_TEST_VERIFIED` | 16 | `8887063327` | No |
+| Servers | `xai-colossus-servers#11` | `BOUNDED_RACK_PLANNER_TEST_VERIFIED` | 20 | `8887480269` | No |
+| Security | `xai-colossus-security#5` | `BOUNDED_SECURITY_PROPOSAL_ENGINE_TEST_VERIFIED` | 35 | `8887833822` | No |
+| Nanosphere | `xai-colossus-nanosphere#4` | `BOUNDED_NANOFLUID_MODEL_TEST_VERIFIED` | 58 | `8888366530` | No |
+
+**Executed source total:** 166 bounded tests.
+
+Energy also has 19 separate memory-layer unit tests from an intentionally degraded, no-provider environment. The five source pull requests remain draft and unmerged.
+
+## Execution-blocked candidates
+
+| Priority | Candidate | Current classification | Generated test contract | Counted as verified |
+|---:|---|---|---:|---|
+| 1 | Microcode | `REVIEWED_EXECUTION_BLOCKED` | 132 | No |
+| 2 | Architecture planner | `GENERATED_EXECUTION_BLOCKED` | 59 | No |
+| 3 | Waterplant | `GENERATED_EXECUTION_BLOCKED` | 52 | No |
+
+These contracts are not added to the executed total. Their GitHub jobs failed before any runner step was created.
+
+## Canonical authorities
+
+| Responsibility | Authority |
+|---|---|
+| Technical behavior and receipts | Individual verified source repositories |
+| Portfolio dependency and milestone model | `GlacierEQ/colossus-build-blueprint` |
+| Human-readable evidence navigator | `GlacierEQ/xai-colossus-community` |
+| Public local evidence router | This repository |
+
+The public hub does not copy source implementations and does not elevate itself above their receipts.
+
+## Quick start
+
+```bash
+python core/portfolio_router.py
 ```
-┌─────────────────────────────────────────────────────┐
-│              MASTERMIND ORCHESTRATOR                  │
-│    12 pistons · task chaining · auto-heal · 500ms    │
-└──────────────────────┬──────────────────────────────┘
-                       │
-    ┌──────────┬───────┼───────┬──────────┬──────────┐
-    ▼          ▼       ▼       ▼          ▼          ▼
- THERMAL    ENERGY  SECURITY  SERVERS  WATERPLANT  MICROCODE
- PINN       Grid    Hydra     Rack     5-Stage     Firmware
- Immersed   Megapack Ghost    GPU      Cooling     Matrix
- Cascade    PUE     SBOM     Health   Tower       Compat
- Predict    Forecast         Network  Comply      Patch
-    │          │       │       │          │          │
-    └──────────┴───────┼───────┴──────────┴──────────┘
-                       │
-              ┌────────┴────────┐
-              │  API GATEWAY    │
-              │  MCP BRIDGE     │
-              │  4-TIER MEMORY  │
-              └─────────────────┘
+
+Return one domain record:
+
+```bash
+python core/portfolio_router.py --domain security
 ```
 
-## Quick Start
+Return only bounded verified claims:
+
+```bash
+python core/portfolio_router.py --claims
+```
+
+Historical import compatibility:
 
 ```python
 from core.mastermind_orchestrator import MastermindOrchestrator
-import asyncio
 
-# Initialize orchestrator with all subsystems
-orch = MastermindOrchestrator()
-
-# Run full autonomous loop
-asyncio.run(orch.run(duration_ticks=10))
-
-# Check health
-print(orch.summary())
+router = MastermindOrchestrator()
+print(router.summary())
 ```
 
-## Subsystems (8)
+`MastermindOrchestrator` is now a fail-closed compatibility facade. It reads the local registry, reports `runtime_orchestration_available: false`, and executes no subsystem or task.
 
-| Subsystem | Purpose | Key Innovation |
-|-----------|---------|----------------|
-| **Thermal** | PINN digital twin, immersion cooling | Physics-Informed Neural Network |
-| **Energy** | 1.5GW grid balancing, Megapack FSM | 8-state finite state machine |
-| **Security** | Hydra immune response, SBOM chain | Multi-head threat detection |
-| **Servers** | 12,500 racks, 200k GPU health | Real-time thermal monitoring |
-| **Waterplant** | 5-stage treatment, cooling tower | Clean Water Act compliance |
-| **Microcode** | Firmware matrix, driver compat | Hot-patching without downtime |
-| **Nanosphere** | Conductivity, degradation | Arrhenius degradation models |
-| **Community** | Emissions, impact | Environmental justice tracking |
+## Registry rules
 
-## Mastermind Orchestrator
+A verified source must have:
 
-12 autonomous pistons running behind the scenes:
+- a unique repository;
+- a draft source pull request number;
+- an evidence state ending in `_VERIFIED`;
+- a positive bounded test count;
+- a unique direct artifact identifier;
+- `merged: false`;
+- a bounded public claim.
 
-| Piston | Role | Lane |
-|--------|------|------|
-| STEALTH-MICROWAVE | Parallel Execution | batch_acceleration |
-| MOTION-FORGE | Legal Motion Generation | legal_warfare |
-| SPIRAL-MEMORY | Memory Management | memory_ops |
-| ASPEN-FEDERATION | Connector Orchestration | connectors |
-| RICO-MAPPER | RICO Analysis | legal_warfare |
-| FEDERAL-ESCALATION | Federal Court Filing | legal_warfare |
-| EVIDENCE-ANALYZER | Evidence Processing | forensics |
-| NOTION-SYNC | Notion Integration | integrations |
-| MORPHEUS-ADAPT | Adaptive Learning | intelligence |
-| CONSTITUTIONAL-WARFARE | Constitutional Law | legal_warfare |
-| QUANTUM-MEMORY | Advanced Memory | memory_ops |
-| HOLOGRAPHIC-MESH | Distributed Computing | infrastructure |
+An execution-blocked candidate must have:
 
-## Double Helix Architecture
+- `runner_steps_created: false`;
+- `counted_as_verified: false`;
+- a generated test-contract count;
+- a unique strategic priority;
+- one of the explicitly allowed blocked classifications.
 
-**Alpha (What)** + **Omega (How)** = Two separate repos, tied through contracts.
+Aggregate totals are derived and reconciled against the source records. A mismatch fails validation.
 
-- **Alpha**: Domain physics (thermal, energy, security)
-- **Omega**: Orchestration (mastermind, devops, monitoring)
+## Historical surfaces
 
-See [`HELIX.md`](HELIX.md) for full architecture.
+Earlier files in this repository described:
 
-## Pro-Code 7-Gate Audit
+- a live autonomous Mastermind;
+- twelve pistons;
+- cross-repository subsystem ticks;
+- legal-motion and litigation automation;
+- automatic healing and restart;
+- MCP and API connectivity;
+- 1.5 GW, 200,000 GPUs, 12,500 racks, and other hyperscale figures;
+- firmware hotpatching and physical infrastructure control.
 
-Every code output passes through 7 gates:
+Those descriptions are classified as **HISTORICAL_NON_AUTHORITATIVE**. They are not part of the current public contract. See [`HISTORICAL_SURFACES.md`](HISTORICAL_SURFACES.md).
 
-1. ✅ Naming (snake_case, prefixes)
-2. ✅ Architecture (subsystem contract)
-3. ✅ Failure handling (circuit breaker)
-4. ✅ Maintainability (4-tier memory)
-5. ✅ Authenticity (physics-first)
-6. ✅ Observability (TelemetryBus)
-7. ✅ Documentation (AGENTS.md)
-
-See [`PRO_CODE_AUDIT.md`](PRO_CODE_AUDIT.md) for details.
-
-## Testing
+## Verification
 
 ```bash
-# Run all tests
-python -m pytest tests/ -v
-
-# Run mastermind tests only
-python -m pytest tests/test_mastermind.py -v
-
-# Run devops pipeline tests
-python -m pytest tests/test_devops.py -v
+bash scripts/ci/verify_portfolio_router.sh
 ```
 
-**55+ tests** across mastermind orchestrator, devops pipeline, and existing subsystem tests.
+The bounded verifier checks:
 
-## Tech Stack
+- registry schema and normalization;
+- exact source and candidate classifications;
+- aggregate reconciliation;
+- unique artifact and repository identities;
+- promotion readiness;
+- local-only routing behavior;
+- compatibility-facade non-execution;
+- public truth boundaries;
+- deterministic summary and receipt generation.
 
-- **Python 3.13** — Core language
-- **asyncio** — Concurrent subsystem ticks
-- **pytest** — Test framework
-- **GitHub Actions** — CI/CD pipeline
-- **MCP Bridge** — AI agent integration
+## Explicit limits
 
-## Scale
+This repository does not establish:
 
-| Metric | Value |
-|--------|-------|
-| Power draw | 1.5 GW |
-| GPUs | 200,000 |
-| Racks | 12,500 |
-| InfiniBand links | 100,000 |
-| Cooling tanks | 100 (immersion) |
-| Subsystems | 8 |
-| Pistons | 12 |
-| API endpoints | 16+ |
-| MCP tools | 10 |
+- company affiliation, employment, endorsement, access, or deployment;
+- live infrastructure, telemetry, health, or control;
+- source correctness beyond the imported receipt metadata;
+- source PR merge status beyond the declared and validated registry record;
+- vendor validation, permits, regulatory approval, legal conclusions, or safety;
+- fleet size, power, rack, network, cooling, water, endpoint, API, or tool counts;
+- PUE, uptime, latency, throughput, cost, environmental, community, or business outcomes;
+- production readiness.
 
-## Related Repos
+## Career signal
 
-| Repo | Domain |
-|------|--------|
-| [xai-colossus-cooling](https://github.com/GlacierEQ/xai-colossus-cooling) | Thermal management |
-| [xai-colossus-energy](https://github.com/GlacierEQ/xai-colossus-energy) | Power grid |
-| [xai-colossus-security](https://github.com/GlacierEQ/xai-colossus-security) | Security systems |
-| [Pro-xAI](https://github.com/GlacierEQ/Pro-xAI) | xAI autonomous flagship |
-| [Pro_Code](https://github.com/GlacierEQ/Pro_Code) | Double Helix doctrine |
+Use this repository to demonstrate:
 
----
+- evidence-aware systems architecture;
+- trustworthy portfolio and release governance;
+- fail-closed metadata validation;
+- bounded claims and promotion control;
+- compatibility migration away from unsafe or overstated runtime contracts;
+- separation of source implementation, verification, review, research, and public communication.
 
-> *"Two strands. One autonomous DNA. Build for 200k GPUs or don't build at all."*
-
----
-
-## Fleet ops (transparent)
-
-This repo may include **`.integrity/`** (SHA-256 baselines / watchdog) and/or a health sidecar.
-These are **documented multi-repo fleet operations**, not covert implants.
-
-See [SECURITY_AND_FLEET_OPS.md](SECURITY_AND_FLEET_OPS.md) and
-`~/GlacierEQ_Swarm/state/PORTFOLIO_SHADOW_AND_GAUNTLET.md`.
-
-## Helix strand
-
-See [HELIX_STRAND.md](HELIX_STRAND.md) — piston/spiral role in the portfolio double helix.
+Do not present it as an infrastructure control system. Present it as a public evidence router and governance layer.
