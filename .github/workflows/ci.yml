@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [master, main]
   pull_request:
-    branches: [main]
+    branches: [master, main]
 
 jobs:
   ci:
@@ -12,3 +12,7 @@ jobs:
     with:
       repo_name: ${{ github.event.repository.name }}
       language: python
+      python_version: "3.11"
+      strict: true
+      verify_script: scripts/ci/verify_portfolio_router.sh
+      upload_artifacts: true

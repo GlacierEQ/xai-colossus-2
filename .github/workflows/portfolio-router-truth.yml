@@ -1,0 +1,37 @@
+name: Public Receipt Router Truth Gate
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-public-router-verification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run bounded public router verifier
+        run: bash -euo pipefail scripts/ci/verify_portfolio_router.sh
+
+      - name: Upload public router receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-receipt-router-verification
+          path: .verification-artifacts/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14
