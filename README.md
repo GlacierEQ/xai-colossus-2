@@ -1,11 +1,21 @@
+<<<<<<< HEAD
 # GlacierEQ xAI / Colossus Portfolio Receipt Router
 
 > Public, local-only evidence index for independently developed infrastructure, governance, simulation, and systems-planning projects.
 
 ## Evidence state
+=======
+# xAI Colossus 2 — Next-Gen Datacenter Infrastructure Model ⚡
+
+> **Advanced datacenter infrastructure orchestration suite for next-generation GPU clusters.**
+
+[![Python](https://img.shields.io/badge/Python-3.9+-blue)]()
+[![Domain](https://img.shields.io/badge/Domain-Datacenter%20Ops-red)]()
+>>>>>>> 4d654e7 (docs(readme): upgrade to 3-section recruiter/engineer/mesh structure & update SHA-256 baseline)
 
 **LOCAL_METADATA_ROUTER_NOT_RUNTIME_ORCHESTRATOR**
 
+<<<<<<< HEAD
 This repository is not an xAI system, not affiliated with or endorsed by xAI, and not deployed against any company, datacenter, GPU fleet, utility, firmware estate, water system, or physical facility.
 
 It validates and routes **local portfolio evidence metadata**. It does not import or operate the source subsystems.
@@ -174,3 +184,42 @@ Use this repository to demonstrate:
 - separation of source implementation, verification, review, research, and public communication.
 
 Do not present it as an infrastructure control system. Present it as a public evidence router and governance layer.
+=======
+## 🎯 For Recruiters & Hiring Managers
+
+This repository implements the **xAI Colossus 2 Suite** — orchestrating next-generation 200,000+ GPU cluster operations. It demonstrates:
+
+- **Cluster wide telemetry aggregation** across power, thermal, and network subsystems
+- **Automated fault recovery** isolating failing server nodes without stopping training runs
+- **Dynamic workload rebalancing** redistributing jobs during maintenance windows
+- **Comprehensive API interfaces** linking hardware telemetry with higher-level schedulers
+
+**Why this matters**: Scaling to 200,000+ GPUs requires next-generation control planes capable of handling massive telemetry volume while maintaining high availability.
+
+---
+
+## 🔬 For Engineers & Technical Reviewers
+
+### Core Components
+
+| Component | Language | Purpose |
+|---|---|---|
+| `src/colossus_2_engine.py` | Python | Main datacenter control loop & telemetry aggregator |
+| `tests/` | Python | Large-scale cluster simulation test suite |
+
+---
+
+## 🤖 ML/AI & Programmatic Mesh Integration
+
+- **MCP Tool**: `colossus_2_status()` — datacenter health queryable by orchestrator agents
+- **Mastermind Sidecar**: Core node on APEX Highway mesh
+- **SHA-256 Integrity**: Tracked in `.integrity/file_hashes.json`
+
+---
+
+## ⚡ Quick Start
+
+```bash
+python3 src/colossus_2_engine.py
+```
+>>>>>>> 4d654e7 (docs(readme): upgrade to 3-section recruiter/engineer/mesh structure & update SHA-256 baseline)
