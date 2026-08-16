@@ -126,8 +126,8 @@ def test_repository_actions_are_non_destructive() -> None:
 def test_career_and_engineering_positioning_keeps_ambition_and_truth() -> None:
     for phrase in (
         "Datacenter Infrastructure Orchestration Project",
-        "Architecture target",
-        "Counter-engineering recovery target",
+        "## Architecture",
+        "## Counter-engineering result and next frontier",
         "preserve truth, restore function, then exceed the strongest prior implementation",
     ):
         assert phrase in README
