@@ -1,46 +1,55 @@
-<<<<<<< HEAD
-# GlacierEQ xAI / Colossus Portfolio Receipt Router
+# xAI Colossus 2 — Datacenter Infrastructure Orchestration Project ⚡
 
-> Public, local-only evidence index for independently developed infrastructure, governance, simulation, and systems-planning projects.
+> Independent GlacierEQ engineering project for next-generation datacenter orchestration, subsystem composition, simulation, evidence, and control-plane development.
 
-## Evidence state
-=======
-# xAI Colossus 2 — Next-Gen Datacenter Infrastructure Model ⚡
+**Non-affiliation:** this repository is independently developed. It does not establish affiliation with, endorsement by, employment at, internal access to, or production deployment at xAI or any other company.
 
-> **Advanced datacenter infrastructure orchestration suite for next-generation GPU clusters.**
+## Project identity and current state
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue)]()
-[![Domain](https://img.shields.io/badge/Domain-Datacenter%20Ops-red)]()
->>>>>>> 4d654e7 (docs(readme): upgrade to 3-section recruiter/engineer/mesh structure & update SHA-256 baseline)
+This repository has multiple planes that must not be collapsed into one another:
 
-**LOCAL_METADATA_ROUTER_NOT_RUNTIME_ORCHESTRATOR**
+| Plane | Current meaning |
+|---|---|
+| **Product / target** | Build a powerful datacenter infrastructure orchestration system that composes thermal, energy, servers, security, water, firmware/microcode, nanofluid, telemetry, tasking, health, recovery, API, and agent-facing control surfaces. |
+| **Implementation lineage** | Earlier revisions contain a `MastermindOrchestrator` with subsystem loading/ticks, task assignment/execution, piston routing, health tracking, and a timed orchestration loop. Those mechanisms are capability donors for repair-forward reconstruction. |
+| **Current runtime** | The present `core/mastermind_orchestrator.py` is still a neutralized compatibility facade and does **not** provide the historical orchestration behavior. That is a known recovery target, not the definition of what this project is allowed to become. |
+| **Evidence / proof** | `PORTFOLIO_REGISTRY.json` and `core/portfolio_router.py` preserve bounded, source-specific evidence about currently tested subsystem work. |
+| **Public projection** | Claims are limited to what is currently evidenced. Unverified target capability remains a build target; it is not silently promoted into a deployment claim and it is not deleted merely because proof is incomplete. |
 
-<<<<<<< HEAD
-This repository is not an xAI system, not affiliated with or endorsed by xAI, and not deployed against any company, datacenter, GPU fleet, utility, firmware estate, water system, or physical facility.
+**Rule:** proof limits claims; it does not set the product ceiling.
 
-It validates and routes **local portfolio evidence metadata**. It does not import or operate the source subsystems.
+## Architecture target
 
-## What the public hub does
+```text
+                         ┌───────────────────────────────┐
+                         │   MASTERMIND ORCHESTRATOR    │
+                         │ tasking · health · recovery  │
+                         │ subsystem composition       │
+                         └───────────────┬───────────────┘
+                                         │
+        ┌───────────────┬────────────────┼────────────────┬───────────────┐
+        ▼               ▼                ▼                ▼               ▼
+     THERMAL          ENERGY          SERVERS          SECURITY       WATERPLANT
+        │               │                │                │               │
+        └───────────────┴────────────┬───┴────────────────┴───────────────┘
+                                     │
+                         ┌───────────┴───────────┐
+                         ▼                       ▼
+                   MICROCODE / FW          NANOSPHERE
+                         │                       │
+                         └───────────┬───────────┘
+                                     ▼
+                         ┌───────────────────────┐
+                         │ API / MCP / AGENT I/O │
+                         │ receipts + telemetry  │
+                         └───────────────────────┘
+```
 
-- validates the local `PORTFOLIO_REGISTRY.json` fail closed;
-- reconciles verified source counts, test totals, artifact identifiers, and merge state;
-- separates executed source promotions from execution-blocked candidates;
-- returns bounded public claims only for exact verified source records;
-- identifies canonical technical, architecture, evidence-navigation, and public-routing authorities;
-- preserves historical code as non-authoritative rather than using it as proof;
-- records zero external queries and zero external actions.
+This is the engineering direction. It is not a statement that the system is presently operating a production datacenter.
 
-## What it does not do
+## Current bounded evidence plane
 
-- autonomous infrastructure control;
-- subsystem health monitoring or auto-restart;
-- GPU, server, cooling, energy, security, water, or firmware telemetry;
-- task, piston, legal, litigation, connector, MCP, or API orchestration;
-- firmware flashing, hotpatching, rollback, isolation, or remediation;
-- physical-system actuation;
-- production deployment or company integration.
-
-## Current executed evidence
+The current registry records five source repositories with bounded verified test evidence:
 
 | Domain | Source PR | Evidence state | Bounded tests | Artifact | Merged |
 |---|---:|---|---:|---:|---|
@@ -50,176 +59,131 @@ It validates and routes **local portfolio evidence metadata**. It does not impor
 | Security | `xai-colossus-security#5` | `BOUNDED_SECURITY_PROPOSAL_ENGINE_TEST_VERIFIED` | 35 | `8887833822` | No |
 | Nanosphere | `xai-colossus-nanosphere#4` | `BOUNDED_NANOFLUID_MODEL_TEST_VERIFIED` | 58 | `8888366530` | No |
 
-**Executed source total:** 166 bounded tests.
+Registry aggregate: **166 bounded source tests**, plus **19 separate energy memory-layer unit tests**. The registry currently records all five source PRs as unmerged.
 
-Energy also has 19 separate memory-layer unit tests from an intentionally degraded, no-provider environment. The five source pull requests remain draft and unmerged.
+Execution-blocked candidates remain candidates, not proof of execution:
 
-## Execution-blocked candidates
+| Candidate | Registry classification | Generated test contract | Counted verified |
+|---|---|---:|---|
+| Microcode | `REVIEWED_EXECUTION_BLOCKED` | 132 | No |
+| Architecture planner | `GENERATED_EXECUTION_BLOCKED` | 59 | No |
+| Waterplant | `GENERATED_EXECUTION_BLOCKED` | 52 | No |
 
-| Priority | Candidate | Current classification | Generated test contract | Counted as verified |
-|---:|---|---|---:|---|
-| 1 | Microcode | `REVIEWED_EXECUTION_BLOCKED` | 132 | No |
-| 2 | Architecture planner | `GENERATED_EXECUTION_BLOCKED` | 59 | No |
-| 3 | Waterplant | `GENERATED_EXECUTION_BLOCKED` | 52 | No |
+## Counter-engineering recovery target
 
-These contracts are not added to the executed total. Their GitHub jobs failed before any runner step was created.
+The destructive failure mode was to make the current evidence boundary replace the implementation and target boundary. Recovery is therefore **repair-forward**, not a blind rollback:
 
-## Canonical authorities
-
-| Responsibility | Authority |
-|---|---|
-| Technical behavior and receipts | Individual verified source repositories |
-| Portfolio dependency and milestone model | `GlacierEQ/colossus-build-blueprint` |
-| Human-readable evidence navigator | `GlacierEQ/xai-colossus-community` |
-| Public local evidence router | This repository |
-
-The public hub does not copy source implementations and does not elevate itself above their receipts.
-
-## Quick start
-
-```bash
-python core/portfolio_router.py
+```text
+strongest prior unique runtime capability
+        + current valid evidence / safety gains
+        + current Operator target
+        ↓
+method and behavior equivalence analysis
+        ↓
+restore missing unique mechanisms
+        ↓
+compose current router/receipts into the runtime
+        ↓
+test actual orchestration behavior
+        ↓
+verify state without shrinking capability
 ```
 
-Return one domain record:
+Priority runtime mechanisms to reconstruct from Git history and then improve:
 
-```bash
-python core/portfolio_router.py --domain security
-```
+- sibling/subsystem discovery and loading;
+- real subsystem tick dispatch;
+- durable task queue, assignment, execution, retry, and failure accounting;
+- health observation with explicit evidence rather than invented health claims;
+- recovery/auto-heal paths with bounded authority;
+- cross-subsystem composition and task chaining;
+- API / agent-facing orchestration surfaces;
+- receipts and provenance bound to execution rather than substituted for execution;
+- stronger asynchronous concurrency, isolation, observability, and replayability than the historical implementation.
 
-Return only bounded verified claims:
+The receipt router stays. It becomes **one evidence subsystem inside the stronger architecture**, not a replacement for the architecture.
 
-```bash
-python core/portfolio_router.py --claims
-```
+## Current runtime warning
 
-Historical import compatibility:
+At this revision, this code path:
 
 ```python
 from core.mastermind_orchestrator import MastermindOrchestrator
-
-router = MastermindOrchestrator()
-print(router.summary())
 ```
 
-`MastermindOrchestrator` is now a fail-closed compatibility facade. It reads the local registry, reports `runtime_orchestration_available: false`, and executes no subsystem or task.
+still resolves to the compatibility facade that rejects subsystem/task execution. Do not mistake import compatibility for restored orchestration. Runtime recovery is a concrete implementation task.
 
-## Registry rules
+The local evidence router remains directly usable:
 
-A verified source must have:
+```bash
+python core/portfolio_router.py
+python core/portfolio_router.py --domain security
+python core/portfolio_router.py --claims
+```
 
-- a unique repository;
-- a draft source pull request number;
-- an evidence state ending in `_VERIFIED`;
-- a positive bounded test count;
-- a unique direct artifact identifier;
-- `merged: false`;
-- a bounded public claim.
+## Historical runtime lineage
 
-An execution-blocked candidate must have:
+The pre-neutralization `MastermindOrchestrator` lineage included, among other mechanisms:
 
-- `runner_steps_created: false`;
-- `counted_as_verified: false`;
-- a generated test-contract count;
-- a unique strategic priority;
-- one of the explicitly allowed blocked classifications.
+- a 12-piston registry;
+- cooling / energy / security subsystem bindings;
+- direct subsystem tick handlers;
+- task assignment based on availability and health;
+- queued task processing;
+- retry/failure state;
+- timed asynchronous orchestration loops;
+- health history and subsystem state.
 
-Aggregate totals are derived and reconciled against the source records. A mismatch fails validation.
+Historical code is not automatically proof that every claimed integration or external system was actually live. It **is** source evidence that the runtime mechanisms existed and therefore must be evaluated as capability donors rather than erased by a projection decision.
 
-## Historical surfaces
+## Truth boundary
 
-Earlier files in this repository described:
+Until separately proven, this repository does not claim:
 
-- a live autonomous Mastermind;
-- twelve pistons;
-- cross-repository subsystem ticks;
-- legal-motion and litigation automation;
-- automatic healing and restart;
-- MCP and API connectivity;
-- specific hyperscale power, GPU, rack, network, cooling, endpoint, and tool figures;
-- firmware hotpatching and physical infrastructure control.
+- xAI or other-company affiliation, endorsement, employment, internal access, or deployment;
+- control of a live datacenter, GPU fleet, utility, firmware estate, water system, cooling plant, or security system;
+- measured production fleet counts, power draw, PUE, uptime, latency, throughput, cost, or physical outcomes;
+- vendor validation, permits, regulatory approval, or physical-system safety;
+- that a generated test contract executed when no runner steps were created.
 
-Those descriptions are classified as **HISTORICAL_NON_AUTHORITATIVE**. They are not part of the current public contract. See [`HISTORICAL_SURFACES.md`](HISTORICAL_SURFACES.md).
+Large-scale values such as GPU count, rack count, power, links, or cooling capacity belong to scenario/target modeling unless a specific source and execution state prove otherwise.
+
+## Engineering rule
+
+When implementation falls short of the target:
+
+```text
+correct the claim
+→ preserve the target
+→ repair / implement the missing mechanism
+→ test it
+→ verify it
+→ raise the system
+```
+
+Do **not** achieve truth by stripping the implementation down until only the easiest-to-prove fragment remains.
+
+## Related systems
+
+- `GlacierEQ/xai-colossus-cooling` — thermal/cooling work
+- `GlacierEQ/xai-colossus-energy` — energy/grid work
+- `GlacierEQ/xai-colossus-security` — security work
+- `GlacierEQ/xai-colossus-servers` — server/rack planning
+- `GlacierEQ/xai-colossus-nanosphere` — nanofluid modeling
+- `GlacierEQ/xai-colossus-microcode` — firmware/microcode candidate
+- `GlacierEQ/xai-colossus-waterplant` — water/cooling candidate
+- `GlacierEQ/colossus-build-blueprint` — architecture/dependency planning
 
 ## Verification
+
+Evidence-router verification remains:
 
 ```bash
 bash scripts/ci/verify_portfolio_router.sh
 ```
 
-The bounded verifier checks:
-
-- registry schema and normalization;
-- exact source and candidate classifications;
-- aggregate reconciliation;
-- unique artifact and repository identities;
-- promotion readiness;
-- local-only routing behavior;
-- compatibility-facade non-execution;
-- public truth boundaries;
-- deterministic summary and receipt generation.
-
-## Explicit limits
-
-This repository does not establish:
-
-- company affiliation, employment, endorsement, access, or deployment;
-- live infrastructure, telemetry, health, or control;
-- source correctness beyond the imported receipt metadata;
-- source PR merge status beyond the declared and validated registry record;
-- vendor validation, permits, regulatory approval, legal conclusions, or safety;
-- fleet size, power, rack, network, cooling, water, endpoint, API, or tool counts;
-- PUE, uptime, latency, throughput, cost, environmental, community, or business outcomes;
-- production readiness.
-
-## Career signal
-
-Use this repository to demonstrate:
-
-- evidence-aware systems architecture;
-- trustworthy portfolio and release governance;
-- fail-closed metadata validation;
-- bounded claims and promotion control;
-- compatibility migration away from unsafe or overstated runtime contracts;
-- separation of source implementation, verification, review, research, and public communication.
-
-Do not present it as an infrastructure control system. Present it as a public evidence router and governance layer.
-=======
-## 🎯 For Recruiters & Hiring Managers
-
-This repository implements the **xAI Colossus 2 Suite** — orchestrating next-generation 200,000+ GPU cluster operations. It demonstrates:
-
-- **Cluster wide telemetry aggregation** across power, thermal, and network subsystems
-- **Automated fault recovery** isolating failing server nodes without stopping training runs
-- **Dynamic workload rebalancing** redistributing jobs during maintenance windows
-- **Comprehensive API interfaces** linking hardware telemetry with higher-level schedulers
-
-**Why this matters**: Scaling to 200,000+ GPUs requires next-generation control planes capable of handling massive telemetry volume while maintaining high availability.
+That verifier proves the router contract only. It does not certify the still-neutralized Mastermind runtime as restored.
 
 ---
 
-## 🔬 For Engineers & Technical Reviewers
-
-### Core Components
-
-| Component | Language | Purpose |
-|---|---|---|
-| `src/colossus_2_engine.py` | Python | Main datacenter control loop & telemetry aggregator |
-| `tests/` | Python | Large-scale cluster simulation test suite |
-
----
-
-## 🤖 ML/AI & Programmatic Mesh Integration
-
-- **MCP Tool**: `colossus_2_status()` — datacenter health queryable by orchestrator agents
-- **Mastermind Sidecar**: Core node on APEX Highway mesh
-- **SHA-256 Integrity**: Tracked in `.integrity/file_hashes.json`
-
----
-
-## ⚡ Quick Start
-
-```bash
-python3 src/colossus_2_engine.py
-```
->>>>>>> 4d654e7 (docs(readme): upgrade to 3-section recruiter/engineer/mesh structure & update SHA-256 baseline)
+**Direction:** preserve truth, restore function, then exceed the strongest prior implementation.
