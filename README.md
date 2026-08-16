@@ -195,7 +195,7 @@ correct the claim
 → raise the system
 ```
 
-Do **not** achieve truth by stripping the implementation down until only the easiest-to-prove fragment remains.
+Do not achieve truth by stripping the implementation down until only the easiest-to-prove fragment remains.
 
 ## Related systems
 
