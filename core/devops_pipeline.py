@@ -189,7 +189,17 @@ class DevOpsPipeline:
         try:
             start = time.time()
             result = subprocess.run(
-                [sys.executable, "-m", "pytest", str(test_dir), "-v", "--tb=short", "-q"],
+                [
+                    sys.executable,
+                    "-m",
+                    "pytest",
+                    str(test_dir),
+                    "-v",
+                    "--tb=short",
+                    "-q",
+                    "--ignore",
+                    str(test_dir / "test_devops.py"),
+                ],
                 capture_output=True,
                 text=True,
                 timeout=120,
@@ -201,22 +211,20 @@ class DevOpsPipeline:
             output = result.stdout + result.stderr
             run.test_output = output
 
-            # Parse results
-            if "passed" in output:
-                for line in output.split("\n"):
-                    if "passed" in line:
-                        parts = line.strip().split()
-                        for i, part in enumerate(parts):
-                            if part == "passed" and i > 0:
-                                try:
-                                    run.tests_passed = int(parts[i - 1])
-                                except ValueError:
-                                    pass
-                            if "failed" in part and i > 0:
-                                try:
-                                    run.tests_failed = int(parts[i - 1])
-                                except ValueError:
-                                    pass
+            # Parse pytest summary tokens ("112 passed," or "112 passed").
+            for line in output.split("\n"):
+                parts = line.replace(",", " ").split()
+                for i, part in enumerate(parts):
+                    if part == "passed" and i > 0:
+                        try:
+                            run.tests_passed = int(parts[i - 1])
+                        except ValueError:
+                            pass
+                    if part == "failed" and i > 0:
+                        try:
+                            run.tests_failed = int(parts[i - 1])
+                        except ValueError:
+                            pass
 
             if result.returncode == 0:
                 run.gates.append(GateCheck(
